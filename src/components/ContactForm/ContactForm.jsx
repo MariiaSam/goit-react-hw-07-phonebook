@@ -2,7 +2,7 @@ import { Formik } from 'formik';
 import { object, string } from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from '../../redux/selectors';
-import { nanoid } from 'nanoid';
+import { addContact } from '../../redux/сontactsOperations';
 
 import {
   FormStyled,
@@ -11,7 +11,6 @@ import {
   Label,
   Button,
 } from './ContactForm.styled';
-import { addContact } from '../../redux/contactsSlice';
 
 const schema = object().shape({
   name: string()
@@ -59,7 +58,7 @@ export const ContactForm = () => {
           return;
         }
         alert(`${name} added to your contact list`);
-        dispatch(addContact({ name, number, id: nanoid() }));
+        dispatch(addContact({ name, phone: number }));
         actions.resetForm();
       }}
     >
