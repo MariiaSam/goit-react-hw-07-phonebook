@@ -15,4 +15,3 @@ export const selectActiveContacts = createSelector(
   }
 );
 
-//Результатом цього селектора - selectActiveContacts - є новий масив, який містить тільки контакти, які відповідають умові фільтрації
