@@ -6,6 +6,9 @@ import { selectIsDeleting } from '../../redux/selectors';
 
 import { ContactElementBtn } from './ContactElement.styled';
 
+import { Report } from 'notiflix/build/notiflix-report-aio';
+
+
 
 export const ContactElement = ({ id, name, phone }) => {
   const dispatch = useDispatch();
@@ -14,7 +17,11 @@ export const ContactElement = ({ id, name, phone }) => {
 
   const handleDeleteBtn = id => {
     setDeleteButton('In process');
-    alert(`${name} number removed from the contact list!`);
+    Report.failure(
+      'Notiflix Failure',
+      `${name} number removed from the contact list!`,
+      'Okay',
+      );
     dispatch(deleteContact(id)).then(() => {
       setDeleteButton('Delete');
     });

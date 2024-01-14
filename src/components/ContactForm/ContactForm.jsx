@@ -3,6 +3,7 @@ import { object, string } from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from '../../redux/selectors';
 import { addContact } from '../../redux/сontactsOperations';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 
 import {
   FormStyled,
@@ -49,16 +50,26 @@ export const ContactForm = () => {
       
         if (existingName || existingNumber) {
           if (existingName) {
-            alert(`${name} already in contacts`);
+
+            Report.success(
+              'Notiflix Success',
+              `${name} already in contacts`,
+              'Okay',
+              )
           }
           if (existingNumber) {
-            alert(`${number} already in contacts`);
+            Report.failure(
+              `${number} already in contacts`,
+              'Okay',
+              );
           }
           actions.resetForm();
           return;
         }
-      
-        alert(`${name} added to your contacts list`);
+        Report.success(
+          `${name} added to your contacts list`,
+          'Okay',
+          );
         dispatch(addContact({ name, phone: number }));
         actions.resetForm();
       }}
