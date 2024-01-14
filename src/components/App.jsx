@@ -20,33 +20,8 @@ export const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-  dispatch(fetchContacts)
+  dispatch(fetchContacts())
   }, [dispatch])
-
-
-//   return (
-//     <div>
-//       <Section title="Phonebook">
-//         <ContactForm />
-//           <>
-//             <ContactsTitle title="Contacts" />
-//           </>
-      
-//         <Filter />
-//         {contacts.length > 0 && activeContacts.length === 0 && (
-//           <Error message={'Nothing was found for this name'} />
-//         )}
-//         {contacts.length === 0 && !isLoading && (
-//           <Error message={'No contacts in your phone'} />
-//         )}
-//         {isLoading && <Loader />}
-//         {contacts.length > 0 && <ContactList />}
-//         <ContactList />
-//       </Section>
-//     </div>
-//   );
-// };
-
 
 return (
   <div>
