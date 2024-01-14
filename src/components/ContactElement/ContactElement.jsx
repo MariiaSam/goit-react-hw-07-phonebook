@@ -11,7 +11,7 @@ export const ContactElement = ({ id, name, phone }) => {
 
   const handleDeleteBtn = id => {
     setDeleteButton('Deleting...');
-    alert(`${name} Number removed from the contact list!`);
+    alert(`${name} number removed from the contact list!`);
     dispatch(deleteContact(id)).then(() => {
       setDeleteButton('Delete');
     });
