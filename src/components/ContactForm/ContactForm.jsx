@@ -37,27 +37,28 @@ export const ContactForm = () => {
         number: '',
       }}
       validationSchema={schema}
+
       onSubmit={({ name, number }, actions) => {
-        if (
-          contacts.find(
-            ({ name: oldName }) => oldName.toLowerCase() === name.toLowerCase()
-          )
-        ) {
-          alert(`${name} is already in contacts`);
+        const existingName = contacts.find(
+          ({ name: oldName }) => oldName && oldName.toLowerCase() === name.toLowerCase()
+        );
+      
+        const existingNumber = contacts.find(
+          ({ number: oldNumber }) => oldNumber && oldNumber.toLowerCase() === number.toLowerCase()
+        );
+      
+        if (existingName || existingNumber) {
+          if (existingName) {
+            alert(`${name} already in contacts`);
+          }
+          if (existingNumber) {
+            alert(`${number} already in contacts`);
+          }
           actions.resetForm();
           return;
         }
-        if (
-          contacts.find(
-            ({ number: oldNumber }) =>
-              oldNumber.toLowerCase() === number.toLowerCase()
-          )
-        ) {
-          alert(`${number} is already in contacts`);
-          actions.resetForm();
-          return;
-        }
-        alert(`${name} added to your contact list`);
+      
+        alert(`${name} added to your contacts list`);
         dispatch(addContact({ name, phone: number }));
         actions.resetForm();
       }}
